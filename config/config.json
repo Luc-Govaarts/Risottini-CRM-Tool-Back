@@ -1,0 +1,23 @@
+{
+  "development": {
+    "url": "postgres://gsxeaggh:g3lRuU3JjpYu18_da6I3Ewe3oa7Q-XZz@kandula.db.elephantsql.com:5432/gsxeaggh",
+    "dialect": "postgres",
+    "operatorsAliases": "0"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": "0"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": "0"
+  }
+}
