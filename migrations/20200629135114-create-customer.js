@@ -16,8 +16,8 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true
       },
-      contact_person: {
-        type: Sequelize.STRING
+      contactID: {
+        type: Sequelize.INTEGER
       },
       phone: {
         type: Sequelize.INTEGER
