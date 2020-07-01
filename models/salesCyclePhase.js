@@ -22,3 +22,11 @@ module.exports = (sequelize, DataTypes) => {
   });
   return salesCyclePhase;
 };
+
+
+
+
+
+
+
+
