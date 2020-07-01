@@ -10,7 +10,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      lead.belongsTo(models.contact)
+      lead.belongsTo(models.user)
+      lead.hasMany(models.report)
+      lead.belongsTo(models.salesCyclePhase)
+      lead.hasOne(models.action)
     }
   };
   lead.init({
@@ -22,10 +26,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true
     },
-    contactID: DataTypes.INTEGER,
-    phone: DataTypes.INTEGER,
-    address: DataTypes.STRING,
-    email: DataTypes.STRING,
+    company_phone: DataTypes.INTEGER,
+    company_address: DataTypes.STRING,
+    company_email: DataTypes.STRING,
     supplier: DataTypes.STRING,
   }, {
     sequelize,
