@@ -10,4 +10,4 @@ function toData(token) {
   return jwt.verify(token, jwtSecret);
 }
 
-module.exports = { toJWT, toData };
+module.exports = { toJWT, toData }

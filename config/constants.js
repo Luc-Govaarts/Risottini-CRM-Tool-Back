@@ -1,4 +1,4 @@
 module.exports = {
-  SALT_ROUNDS: 10,
+  SALT_ROUNDS: process.env.SALT_ROUNDS,
   PORT: process.env.PORT || 4000
 };
