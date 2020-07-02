@@ -55,7 +55,7 @@ if (process.env.DELAY) {
  */
 
 app.use("/", authRouter);
-app.use("/lead", authMiddleWare, customerRouter)
+app.use("/leads", authMiddleWare, customerRouter)
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
