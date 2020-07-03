@@ -17,7 +17,7 @@ module.exports = {
         allowNull: true
       },
       company_phone: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       company_address: {
         type: Sequelize.STRING

@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true
     },
-    company_phone: DataTypes.INTEGER,
+    company_phone: DataTypes.STRING,
     company_address: DataTypes.STRING,
     company_email: DataTypes.STRING,
     supplier: DataTypes.STRING,
