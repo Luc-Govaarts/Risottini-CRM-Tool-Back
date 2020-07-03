@@ -2,13 +2,15 @@ const Lead = require("../models").lead;
 const Report = require("../models").report;
 const Action = require("../models").action;
 const Contact = require("../models").contact;
+const User = require("../models").user
 const { Router } = require("express");
 
 const router = new Router();
 
 router.get("/", async (req, res, next) => {
     try {
-        const leads = await Lead.findAll({include: Report})
+        const leads = await Lead.findAll({include: [Report, 
+            Action, Contact, User]})
         res.send(leads)
     } catch(error) {
         console.log(error)
