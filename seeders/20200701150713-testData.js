@@ -8,7 +8,7 @@ module.exports = {
       {
         name: "Daan Klein",
         email: "Daan@kleinenkok.nl",
-        password: bcrypt.hashSync("test1234", SALT_ROUNDS),
+        password: bcrypt.hashSync("test1234", 10),
         phone: 1234567,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -16,7 +16,7 @@ module.exports = {
       {
         name: "Merijn Kok",
         email: "Merijn@kleinenkok.nl",
-        password: bcrypt.hashSync("test1234", SALT_ROUNDS),
+        password: bcrypt.hashSync("test1234", 10),
         phone: 1234567,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -24,7 +24,7 @@ module.exports = {
       {
         name: "Teun",
         email: "Teun@kleinenkok.nl",
-        password: bcrypt.hashSync("test1234", SALT_ROUNDS),
+        password: bcrypt.hashSync("test1234", 10),
         phone: 1234567,
         createdAt: new Date(),
         updatedAt: new Date(),

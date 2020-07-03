@@ -57,7 +57,7 @@ if (process.env.DELAY) {
 
 app.use("/", authRouter);
 app.use("/leads", customerRouter)
-app.use("/salesCyclePhases", salesCyclePhasesRouter)
+app.use("/salescyclephases", salesCyclePhasesRouter)
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
