@@ -32,7 +32,7 @@ module.exports = {
     await queryInterface.addColumn("leads", "salesCyclePhaseId", {
       type: Sequelize.INTEGER,
       references: {
-        model: "salesCyclePhase",
+        model: "salesCyclePhases",
         key: "id",
       },
       onUpdate: "CASCADE",

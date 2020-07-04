@@ -11,7 +11,7 @@ const router = new Router();
 router.get("/", async (req, res, next) => {
     try {
         const leads = await Lead.findAll({include: [Report, 
-            Action, Contact, User]})
+            Action, Contact, User, SalesCyclePhase]})
         res.send(leads)
     } catch(error) {
         console.log(error)

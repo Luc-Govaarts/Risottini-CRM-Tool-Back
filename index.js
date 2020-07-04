@@ -4,8 +4,9 @@ const loggerMiddleWare = require("morgan");
 const corsMiddleWare = require("cors");
 const { PORT } = require("./config/constants");
 const authRouter = require("./routers/auth");
-const customerRouter = require("./routers/lead")
+const leadRouter = require("./routers/lead")
 const salesCyclePhasesRouter = require("./routers/salesCyclePhase")
+const contactRouter = require("./routers/contact")
 const authMiddleWare = require("./auth/middleware");
 
 const app = express();
@@ -56,8 +57,9 @@ if (process.env.DELAY) {
  */
 
 app.use("/", authRouter);
-app.use("/leads", customerRouter)
-app.use("/salescyclephases", salesCyclePhasesRouter)
+app.use("/leads", leadRouter)
+app.use("/salescyclephases", authMiddleWare ,salesCyclePhasesRouter)
+app.use("/contacts", authMiddleWare, contactRouter)
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
