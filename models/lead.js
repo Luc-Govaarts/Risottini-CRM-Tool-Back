@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       lead.belongsTo(models.user)
       lead.hasMany(models.report)
       lead.belongsTo(models.salesCyclePhase)
-      lead.hasOne(models.action)
+      lead.hasMany(models.action)
     }
   };
   lead.init({

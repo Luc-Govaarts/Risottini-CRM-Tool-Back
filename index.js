@@ -9,7 +9,9 @@ const salesCyclePhasesRouter = require("./routers/salesCyclePhase")
 const contactRouter = require("./routers/contact")
 const userRouter = require("./routers/user")
 const reportRouter = require("./routers/report")
+const actionRouter = require("./routers/action")
 const authMiddleWare = require("./auth/middleware");
+const auth = require('./auth/middleware');
 
 const app = express();
  /* We are configuring cors to accept all incoming requests
@@ -64,7 +66,7 @@ app.use("/leads", authMiddleWare,leadRouter)
 app.use("/salescyclephases", authMiddleWare, salesCyclePhasesRouter)
 app.use("/contacts", authMiddleWare, contactRouter)
 app.use("/reports", authMiddleWare, reportRouter)
-
+app.use("/actions", authMiddleWare, actionRouter)
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
