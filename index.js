@@ -7,6 +7,8 @@ const authRouter = require("./routers/auth");
 const leadRouter = require("./routers/lead")
 const salesCyclePhasesRouter = require("./routers/salesCyclePhase")
 const contactRouter = require("./routers/contact")
+const userRouter = require("./routers/user")
+const reportRouter = require("./routers/report")
 const authMiddleWare = require("./auth/middleware");
 
 const app = express();
@@ -57,9 +59,12 @@ if (process.env.DELAY) {
  */
 
 app.use("/", authRouter);
-app.use("/leads", leadRouter)
-app.use("/salescyclephases", authMiddleWare ,salesCyclePhasesRouter)
+app.use("/users", userRouter)
+app.use("/leads", authMiddleWare,leadRouter)
+app.use("/salescyclephases", authMiddleWare, salesCyclePhasesRouter)
 app.use("/contacts", authMiddleWare, contactRouter)
+app.use("/reports", authMiddleWare, reportRouter)
+
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
