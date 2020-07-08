@@ -14,7 +14,9 @@ module.exports = {
         updatedAt: new Date(),
         userId: 1,
         salesCyclePhaseId: 5,
-        contactId: 1
+        contactId: 1,
+        lat: 52.377070,
+        lng: 4.881680
       },
       {
         company_name: "Scheepskameel",
@@ -27,7 +29,9 @@ module.exports = {
         updatedAt: new Date(),
         userId: 2,
         salesCyclePhaseId: 2,
-        contactId: 3
+        contactId: 3,
+        lat: 52.371800,
+        lng: 4.916270
       },
       {
         company_name: "Karavaan",
@@ -40,7 +44,9 @@ module.exports = {
         updatedAt: new Date(),
         userId: 3,
         salesCyclePhaseId: 1,
-        contactId: 2
+        contactId: 2,
+        lat: 52.369130,
+        lng: 4.870380
       },
       {
         company_name: "Café Cómodo",
@@ -53,7 +59,9 @@ module.exports = {
         updatedAt: new Date(),
         userId: 1,
         salesCyclePhaseId: 3,
-        contactId: 2
+        contactId: 2,
+        lat: 52.362780,
+        lng: 4.863690
       },
       {
         company_name: "Festina Lente",
@@ -66,7 +74,9 @@ module.exports = {
         updatedAt: new Date(),
         userId: 3,
         salesCyclePhaseId: 4,
-        contactId: 4
+        contactId: 4,        
+        lat: 52.368680,
+        lng: 4.881410
       },
     ], {})
   },

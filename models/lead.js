@@ -30,7 +30,15 @@ module.exports = (sequelize, DataTypes) => {
     company_address: DataTypes.STRING,
     company_email: DataTypes.STRING,
     supplier: DataTypes.STRING,
-  }, {
+    lat: {
+      type: DataTypes.FLOAT,
+      allowNull: false
+    },
+    lng: {
+      type: DataTypes.FLOAT,
+      allowNull: false
+    }
+    }, {
     sequelize,
     modelName: 'lead',
   });

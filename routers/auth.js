@@ -36,8 +36,14 @@ router.post("/login", async (req, res, next) => {
 
 router.post("/signup", async (req, res) => {
   const { email, password, name, phone } = req.body;
+  console.log("email:", email)
+  console.log("password:", password)
+  console.log("name:", name)
+  console.log("phone:", phone)
   if (!email || !password || !name || !phone) {
-    return res.status(400).send("Please provide an email, password, a name and a phone number");
+    return res.
+      status(400).
+      send({message: "Please provide an email, password, a name and a phone number"});
   }
 
   try {
@@ -59,7 +65,7 @@ router.post("/signup", async (req, res) => {
         .status(400)
         .send({ message: "There is an existing account with this email" });
     }
-
+    console.log(error)
     return res.status(400).send({ message: "Something went wrong, sorry" });
   }
 });

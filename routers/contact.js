@@ -14,7 +14,7 @@ router.get("/", async (req, res, next) => {
 
 router.post("/", async (req, res , next) => {
     const {contact_name, contact_email, contact_phone} = req.body
-    console.log({contact_name, contact_email, contact_phone})
+
     if (!contact_name, !contact_email, !contact_phone) {
         return res.
         status(400).
@@ -31,3 +31,4 @@ router.post("/", async (req, res , next) => {
 })
 
 module.exports = router;
+

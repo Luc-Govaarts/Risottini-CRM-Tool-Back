@@ -11,7 +11,6 @@ const userRouter = require("./routers/user")
 const reportRouter = require("./routers/report")
 const actionRouter = require("./routers/action")
 const authMiddleWare = require("./auth/middleware");
-const auth = require('./auth/middleware');
 
 const app = express();
  /* We are configuring cors to accept all incoming requests
@@ -62,7 +61,7 @@ if (process.env.DELAY) {
 
 app.use("/", authRouter);
 app.use("/users", userRouter)
-app.use("/leads", authMiddleWare,leadRouter)
+app.use("/leads", authMiddleWare, leadRouter)
 app.use("/salescyclephases", authMiddleWare, salesCyclePhasesRouter)
 app.use("/contacts", authMiddleWare, contactRouter)
 app.use("/reports", authMiddleWare, reportRouter)
