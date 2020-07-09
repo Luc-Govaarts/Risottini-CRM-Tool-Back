@@ -24,11 +24,10 @@ router.post("/", async (req, res, next) => {
 })
 
 router.get("/:id", async (req, res, next) => {
-    const leadId = req.params.id
+    const leadId = parseInt(req.params.id)
     console.log("LEAD ID A:", leadId)
     try {
         const actions = await Action.findAll({where: {leadId}})
-
         return res.
         status(200).send(actions)    
     } catch(error) {
