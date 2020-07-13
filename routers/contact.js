@@ -13,7 +13,7 @@ router.get("/", async (req, res, next) => {
 })
 
 router.post("/", async (req, res , next) => {
-    const {contact_name, contact_email, contact_phone} = req.body
+    const {contact_name, contact_email, contact_phone, job_title} = req.body
 
     if (!contact_name, !contact_email, !contact_phone) {
         return res.
@@ -21,6 +21,7 @@ router.post("/", async (req, res , next) => {
         send(`Please provide a name, email and phone number`);}
     try {
         const newContact = await Contact.create({
+            job_title: job_title,
             name: contact_name, 
             email: contact_email, 
             phone: contact_phone})

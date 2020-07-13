@@ -31,11 +31,11 @@ router.post("/", geolocationsMiddleware, async (req, res, next) => {
     const salesCyclePhaseId = 1
 
     console.log(req.body.company_phone)
-    if (!company_name || !company_phone || !company_address || !company_email || !contactId) {
+    if (!company_name || !company_phone || !company_address || !company_email) {
         return res.
             status(402).
             send(`Please provide a company name, an address, 
-            an email, a phone number and a contact person`);
+            an email, and a phone number`);
     }
     try {
         const newLead = await Lead.create({

@@ -35,15 +35,17 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.post("/signup", async (req, res) => {
-  const { email, password, name, phone } = req.body;
-  console.log("email:", email)
-  console.log("password:", password)
-  console.log("name:", name)
-  console.log("phone:", phone)
-  if (!email || !password || !name || !phone) {
+  const { email, password, name, code } = req.body;
+  const { email, password, name, code } = req.body;
+  
+  if (!code) {
     return res.
       status(400).
-      send({message: "Please provide an email, password, a name and a phone number"});
+      send({message: "Ask owner for verification code"})
+  } else if (!email || !password || !name) {
+    return res.
+      status(400).
+      send({message: "Please provide an email, password, a name"});
   }
 
   try {
@@ -51,7 +53,6 @@ router.post("/signup", async (req, res) => {
       email,
       password: bcrypt.hashSync(password, SALT_ROUNDS),
       name,
-      phone
     });
 
     delete newUser.dataValues["password"]; // don't send back the password hash

@@ -1,6 +1,5 @@
 const axios = require("axios");
-const { googleURL } = require("../config/constants")
-const key = process.env.GOOGLE_API_KEY
+const { googleURL, GOOGLE_API_KEY } = require("../config/constants")
 
 async function geolocation(req, res, next) {
     const address = req.body.company_address
@@ -9,7 +8,7 @@ async function geolocation(req, res, next) {
         const resGoogle = await axios.get(`${googleURL}`, {
                                         params: {
                                         address: address,
-                                        key: key}})                         
+                                        key: GOOGLE_API_KEY}})                         
         const latitude = resGoogle.data.results[0].geometry.location.lat
         const longitude = resGoogle.data.results[0].geometry.location.lng
 
