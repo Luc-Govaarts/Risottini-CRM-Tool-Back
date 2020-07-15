@@ -79,8 +79,10 @@ router.patch("/:id/phase", async (req, res, next) => {
 })
 
 router.patch("/:id/contact", async (req, res, next) => {
-    const contactId = req.body
+    const contactId = req.body.contactId
     const id = parseInt(req.params.id)
+    console.log("id:", id)
+    console.log("Contact id:", contactId)
     try {
         const leadToUpdate = await Lead.findByPk(id)
     if (!leadToUpdate) {
