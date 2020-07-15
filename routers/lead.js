@@ -78,4 +78,29 @@ router.patch("/:id/phase", async (req, res, next) => {
     }
 })
 
+router.patch("/:id/contact", async (req, res, next) => {
+    const contactId = req.body
+    const id = parseInt(req.params.id)
+    try {
+        const leadToUpdate = await Lead.findByPk(id)
+    if (!leadToUpdate) {
+        return res.
+        status(404).send(`No lead found with id ${id}`)
+    } else {
+        await leadToUpdate.update({contactId: contactId})
+        const updatedLead = await Lead.findByPk(id, {include: [Report, 
+            Action, Contact, User, SalesCyclePhase]})
+        return res.
+        status(200).
+        send(updatedLead)
+    }
+
+    } catch(error) {
+        console.log(error)
+        return res.
+        status(400).
+        send(error.message)
+    }
+})
+
 module.exports = router;
