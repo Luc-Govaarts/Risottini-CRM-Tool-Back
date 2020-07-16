@@ -31,11 +31,11 @@ router.post("/", geolocationsMiddleware, async (req, res, next) => {
     const salesCyclePhaseId = 1
 
     console.log(req.body.company_phone)
-    if (!company_name || !company_phone || !company_address || !company_email || !contactId) {
+    if (!company_name || !company_phone || !company_address || !company_email) {
         return res.
             status(402).
             send(`Please provide a company name, an address, 
-            an email, a phone number and a contact person`);
+            an email, and a phone number`);
     }
     try {
         const newLead = await Lead.create({
@@ -70,6 +70,33 @@ router.patch("/:id/phase", async (req, res, next) => {
         status(200).
         send(updatedLead)
     }
+    } catch(error) {
+        console.log(error)
+        return res.
+        status(400).
+        send(error.message)
+    }
+})
+
+router.patch("/:id/contact", async (req, res, next) => {
+    const contactId = req.body.contactId
+    const id = parseInt(req.params.id)
+    console.log("id:", id)
+    console.log("Contact id:", contactId)
+    try {
+        const leadToUpdate = await Lead.findByPk(id)
+    if (!leadToUpdate) {
+        return res.
+        status(404).send(`No lead found with id ${id}`)
+    } else {
+        await leadToUpdate.update({contactId: contactId})
+        const updatedLead = await Lead.findByPk(id, {include: [Report, 
+            Action, Contact, User, SalesCyclePhase]})
+        return res.
+        status(200).
+        send(updatedLead)
+    }
+
     } catch(error) {
         console.log(error)
         return res.
