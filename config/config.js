@@ -15,7 +15,7 @@ module.exports = {
     operatorsAliases: "0"
   },
   production: {
-    url: process.env.DATABASE_DEV,
+    use_env_variable: "DATABASE_URL",
     dialect: "postgres",
     operatorsAliases: "0"
   }
