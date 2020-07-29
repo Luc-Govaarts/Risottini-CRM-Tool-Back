@@ -59,4 +59,21 @@ router.patch("/:id", async (req, res, next) => {
     }
 })
 
+router.delete("/:id", async (req, res, next) => {
+    try {
+        const id = parseInt(req.params.id)
+        const actionToDelete = await Action.findByPk(id)
+        if(!actionToDelete){
+            return res.
+                status(404).send(`No report found with id ${id}`)
+        } else {
+            const deleted = await actionToDelete.destroy();
+            res.json(deleted);
+        }
+    } catch {
+        console.log(error)
+        return res.status(400).send(`something went wrong`)
+    }
+})
+
 module.exports = router;
