@@ -115,27 +115,86 @@ router.patch("/:id", geolocationsMiddleware, async (req, res, next) => {
         status(404).send(`No lead found with id ${id}`)
     } if (upToDateLead.company_name !== leadToUpdate.company_name && upToDateLead.company_name !== "") {
         await leadToUpdate.update({company_name: upToDateLead.company_name})
-    } if (upToDateLead.associated_company_name !== leadToUpdate.associated_company_name && upToDateLead.associated_company_name !== "") {
-        await leadToUpdate.update({associated_company_name: upToDateLead.associated_company_name})
-    } if (upToDateLead.company_phone !== leadToUpdate.company_phone && upToDateLead.company_phone !== "") {
-        await leadToUpdate.update({company_phone: upToDateLead.company_phone})
-    } if (upToDateLead.company_email !== leadToUpdate.company_email && upToDateLead.company_email !== "") {
-        await leadToUpdate.update({company_email: upToDateLead.company_email})
-    } if (upToDateLead.supplier !== leadToUpdate.supplier && upToDateLead.supplier !== "") {
-        await leadToUpdate.update({supplier: upToDateLead.supplier})
-    } if (upToDateLead.company_address !== leadToUpdate.company_address && upToDateLead.company_address !== "") {
-        await leadToUpdate.update({company_address: upToDateLead.company_address})
-    } if (req.body.lat !== leadToUpdate.lat) {
-        await leadToUpdate.update({lat: req.body.lat})
-    } if (req.body.lng !== leadToUpdate.lng) {
-        await leadToUpdate.update({lng: req.body.lng})
-    } else {
+
         const updatedLead = await Lead.findByPk(id, {include: [Report, 
             Action, Contact, User, SalesCyclePhase]})
-        console.log(updatedLead)
+
         return res.
             status(200).
             send(updatedLead)
+
+    } if (upToDateLead.associated_company_name !== leadToUpdate.associated_company_name && upToDateLead.associated_company_name !== "") {
+        await leadToUpdate.update({associated_company_name: upToDateLead.associated_company_name})
+
+        const updatedLead = await Lead.findByPk(id, {include: [Report, 
+            Action, Contact, User, SalesCyclePhase]})
+
+        return res.
+            status(200).
+            send(updatedLead)
+
+    } if (upToDateLead.company_phone !== leadToUpdate.company_phone && upToDateLead.company_phone !== "") {
+        await leadToUpdate.update({company_phone: upToDateLead.company_phone})
+
+        const updatedLead = await Lead.findByPk(id, {include: [Report, 
+            Action, Contact, User, SalesCyclePhase]})
+
+        return res.
+            status(200).
+            send(updatedLead)
+            
+    } if (upToDateLead.company_email !== leadToUpdate.company_email && upToDateLead.company_email !== "") {
+        await leadToUpdate.update({company_email: upToDateLead.company_email})
+
+        const updatedLead = await Lead.findByPk(id, {include: [Report, 
+            Action, Contact, User, SalesCyclePhase]})
+
+        return res.
+            status(200).
+            send(updatedLead)
+            
+    } if (upToDateLead.supplier !== leadToUpdate.supplier && upToDateLead.supplier !== "") {
+        await leadToUpdate.update({supplier: upToDateLead.supplier})
+
+        const updatedLead = await Lead.findByPk(id, {include: [Report, 
+            Action, Contact, User, SalesCyclePhase]})
+
+        return res.
+            status(200).
+            send(updatedLead)
+            
+    } if (upToDateLead.company_address !== leadToUpdate.company_address && upToDateLead.company_address !== "") {
+        await leadToUpdate.update({company_address: upToDateLead.company_address})
+
+        const updatedLead = await Lead.findByPk(id, {include: [Report, 
+            Action, Contact, User, SalesCyclePhase]})
+
+        return res.
+            status(200).
+            send(updatedLead)
+            
+    } if (req.body.lat !== leadToUpdate.lat) {
+        await leadToUpdate.update({lat: req.body.lat})
+
+        const updatedLead = await Lead.findByPk(id, {include: [Report, 
+            Action, Contact, User, SalesCyclePhase]})
+
+        return res.
+            status(200).
+            send(updatedLead)
+            
+    } if (req.body.lng !== leadToUpdate.lng) {
+        await leadToUpdate.update({lng: req.body.lng})
+
+        const updatedLead = await Lead.findByPk(id, {include: [Report, 
+            Action, Contact, User, SalesCyclePhase]})
+
+        return res.
+            status(200).
+            send(updatedLead)
+            
+    } else {
+       return res.status(400).send("Nothing to update")
     }
 
     } catch(error) {
