@@ -2,7 +2,7 @@ const axios = require("axios");
 const { googleURL, GOOGLE_API_KEY } = require("../config/constants")
 
 async function geolocation(req, res, next) {
-    const address = req.body.company_address
+    const address = req.body.company_address || req.body.upToDateLead.company_address
 
     try {
         const resGoogle = await axios.get(`${googleURL}`, {
