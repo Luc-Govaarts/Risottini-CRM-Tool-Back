@@ -92,8 +92,8 @@ router.patch("/:id/contact", async (req, res, next) => {
         const updatedLead = await Lead.findByPk(id, {include: [Report, 
             Action, Contact, User, SalesCyclePhase]})
         return res.
-        status(200).
-        send(updatedLead)
+            status(200).
+            send(updatedLead)
     }
 
     } catch(error) {
@@ -156,10 +156,30 @@ router.delete("/:id", async (req, res, next) => {
             return res.
                 status(404).send(`No lead found with id ${id}`)
         } else {
-            const deleted = await leadToDelete.destroy();
+            const deleted = await leadToDelete.destroy({include: [Report, Action]});
             res.json(deleted);
         }
-    } catch {
+    } catch(error) {
+        console.log(error)
+        return res.status(400).send(`something went wrong`)
+    }
+})
+
+router.delete("/:id/contacts", async (req, res, next) => {
+    const id = parseInt(req.params.id)
+    
+    try {
+        const leadToUpdate = await Lead.findByPk(id) 
+        
+        if(!leadToUpdate){
+            return res.
+                status(404).send(`No lead found with id ${id}`)
+        } else {
+            const updatedLead = await leadToUpdate.update({contactId: null})
+            return res.
+                status(200).send(updatedLead)
+        }
+    } catch(error) {
         console.log(error)
         return res.status(400).send(`something went wrong`)
     }
