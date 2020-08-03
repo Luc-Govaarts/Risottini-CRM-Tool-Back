@@ -31,5 +31,22 @@ router.post("/", async (req, res , next) => {
     }
 })
 
+// router.delete("/:id", async (req, res, next) => {
+//     try {
+//         const id = parseInt(req.params.id)
+//         const leadToDelete = await Lead.findByPk(id)
+//         if(!leadToDelete){
+//             return res.
+//                 status(404).send(`No lead found with id ${id}`)
+//         } else {
+//             const deleted = await leadToDelete.destroy();
+//             res.json(deleted);
+//         }
+//     } catch {
+//         console.log(error)
+//         return res.status(400).send(`something went wrong`)
+//     }
+// })
+
 module.exports = router;
 
