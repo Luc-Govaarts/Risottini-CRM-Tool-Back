@@ -37,5 +37,43 @@ router.get("/:id", async (req, res, next) => {
     }
 })
 
+router.patch("/:id", async (req, res, next) => {
+    const { id, action, due_date, note, userId, leadId } = req.body
+    console.log("TESTING REQUEST BODY: ", req.body ) 
+
+    try {
+        const actionToUpdate = await Action.findByPk(id)
+        if(!actionToUpdate) {
+            return res.
+            status(404).send(`No action found with id ${id}`)
+        } else {
+            await actionToUpdate.update({action, due_date, note, userId, leadId})
+            const updatedAction = await Action.findByPk(id)
+            return res.
+                status(200).
+                send(updatedAction)
+        }
+    } catch {
+        console.log(error)
+        return res.status(400).send(`something went wrong`)
+    }
+})
+
+router.delete("/:id", async (req, res, next) => {
+    try {
+        const id = parseInt(req.params.id)
+        const actionToDelete = await Action.findByPk(id)
+        if(!actionToDelete){
+            return res.
+                status(404).send(`No report found with id ${id}`)
+        } else {
+            const deleted = await actionToDelete.destroy();
+            res.json(deleted);
+        }
+    } catch {
+        console.log(error)
+        return res.status(400).send(`something went wrong`)
+    }
+})
 
 module.exports = router;
