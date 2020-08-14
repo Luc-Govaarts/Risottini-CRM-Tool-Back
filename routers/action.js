@@ -1,5 +1,6 @@
 const Action = require("../models").action;
 const User = require("../models").user
+const Lead = require("../models").lead
 const { Router } = require("express");
 
 const router = new Router();
@@ -21,6 +22,18 @@ router.post("/", async (req, res, next) => {
     } catch(error){
         console.log(error)
         return res.status(400).send(`something went wrong`)
+    }
+})
+
+router.get("/", async (req, res, next) => {
+    try {
+        const actions = await Action.findAll({include: [User, Lead]})
+        res.send(action)
+    } catch(error) {
+        console.log(error)
+        return res.
+        status(400).
+        send(error.message)
     }
 })
 
