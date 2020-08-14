@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
   action.init({
     action: DataTypes.STRING,
     due_date: DataTypes.DATE,
-    note: DataTypes.TEXT
+    note: DataTypes.TEXT,
+    done: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'action',

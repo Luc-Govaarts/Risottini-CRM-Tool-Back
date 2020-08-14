@@ -8,6 +8,7 @@ module.exports = {
         action: "Breng een test doosje lans",
         due_date: new Date(),
         note: "De Chef heet Tom",
+        done: true,
         createdAt: new Date(),
         updatedAt: new Date(),
         userId: 2,

@@ -17,6 +17,9 @@ module.exports = {
       note: {
         type: Sequelize.TEXT
       },
+      done: {
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
