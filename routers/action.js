@@ -7,17 +7,18 @@ const router = new Router()
 
 router.post('/', async (req, res, next) => {
 	const { leadId, userId, action, due_date, note } = req.body
-	console.log(due_date)
+
 	try {
-		if ((leadId, action, due_date, note)) {
+		if ((leadId, userId, action, due_date, note)) {
 			const newAction = await Action.create({
 				leadId,
 				userId,
 				action,
 				due_date,
 				note,
-			})
-			return res.status(200).send(newAction)
+            })
+            const newActionResponse = await Action.findByPk(newAction.id, { include: [User, Lead] })
+			return res.status(200).send(newActionResponse)
 		} else {
 			return res.status(400).send(`Missing parameters`)
 		}
@@ -51,8 +52,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.patch('/:id/status', async (req, res, next) => {
 	const id = parseInt(req.params.id)
-    const status = req.body
-    console.log("/888888888" , status)
+    const status = req.body.status
 
 	try {
 		const actionToUpdate = await Action.findByPk(id)
