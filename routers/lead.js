@@ -157,7 +157,9 @@ router.delete("/:id", async (req, res, next) => {
                 status(404).send(`No lead found with id ${id}`)
         } else {
             const deleted = await leadToDelete.destroy({include: [Report, Action]});
-            res.json(deleted);
+            return res.
+            status(200).
+            send(deleted)
         }
     } catch(error) {
         console.log(error)

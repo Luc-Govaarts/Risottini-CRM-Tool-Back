@@ -60,7 +60,7 @@ router.patch('/:id/status', async (req, res, next) => {
 			return res.status(404).send(`No action found with id ${id}`)
 		} else {
 			await actionToUpdate.update({ done: status })
-			const updatedAction = await Action.findByPk(id)
+			const updatedAction = await Action.findByPk(id, {include: [User, Lead]})
 			return res.status(200).send(updatedAction)
 		} 
 	} catch {

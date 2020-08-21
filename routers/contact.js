@@ -25,8 +25,9 @@ router.post('/', async (req, res, next) => {
 			name: contact_name,
 			email: contact_email,
 			phone: contact_phone,
-		})
-		res.status(200).send(newContact)
+        })
+        const sendNewContact = await Contact.findByPk(newContact.id, {include: Lead})
+		res.status(200).send(sendNewContact)
 	} catch (error) {
 		console.log(error)
 		return res.status(400).send(`something went wrong`)
@@ -61,6 +62,25 @@ router.patch('/:id', async (req, res, next) => {
 		console.log(error)
 		return res.status(400).send(`something went wrong`)
 	}
+})
+
+router.delete("/:id", async (req, res, next) => {
+    try {
+        const id = parseInt(req.params.id)
+        const contactToDelete = await Contact.findByPk(id)
+        if(!contactToDelete){
+            return res.
+                status(404).send(`No Contact found with id ${id}`)
+        } else {
+            const deleted = await contactToDelete.destroy({include: Lead});
+            return res.
+            status(200).
+            send(deleted)
+        }
+    } catch(error) {
+        console.log(error)
+        return res.status(400).send(`something went wrong`)
+    }
 })
 
 module.exports = router
