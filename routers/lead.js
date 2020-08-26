@@ -30,12 +30,10 @@ router.post("/", geolocationsMiddleware, async (req, res, next) => {
         lat, lng} = req.body
     const salesCyclePhaseId = 1
 
-    console.log(req.body.company_phone)
-    if (!company_name || !company_phone || !company_address || !company_email) {
+    if (!company_name || !company_address) {
         return res.
             status(402).
-            send(`Please provide a company name, an address, 
-            an email, and a phone number`);
+            send(`Please provide a company name and address`);
     }
     try {
         const newLead = await Lead.create({
