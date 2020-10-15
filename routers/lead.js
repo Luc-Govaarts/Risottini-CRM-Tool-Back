@@ -25,25 +25,28 @@ router.get("/", async (req, res, next) => {
 router.post("/", geolocationsMiddleware, async (req, res, next) => {
     const {company_name, associated_company_name, 
         contact_person, company_phone, 
-        company_address, company_email, 
+        company_address, 
         supplier, contactId, userId,
         lat, lng} = req.body
     const salesCyclePhaseId = 1
 
-    if (!company_name || !company_address) {
+    if (!company_name || !company_phone || !company_address) {
         return res.
             status(402).
-            send(`Please provide a company name and address`);
+            send(`Please provide a company name, an address and a phone number`);
     }
     try {
         const newLead = await Lead.create({
             company_name, associated_company_name, 
             contact_person, company_phone, 
-            company_address, company_email, supplier,
+            company_address, supplier,
             userId, contactId, salesCyclePhaseId, lat, lng})
+
+        const addedLead = await Lead.findByPk( newLead.id ,{include: [Report, 
+            Action, Contact, User, SalesCyclePhase]})
         return res.
             status(200).
-            send(newLead)
+            send(addedLead)
     } catch (error) {
         console.log(error)
         return res.
@@ -117,8 +120,8 @@ router.patch("/:id", geolocationsMiddleware, async (req, res, next) => {
         await leadToUpdate.update({associated_company_name: upToDateLead.associated_company_name})
     } if (upToDateLead.company_phone !== leadToUpdate.company_phone && upToDateLead.company_phone !== "") {
         await leadToUpdate.update({company_phone: upToDateLead.company_phone})
-    } if (upToDateLead.company_email !== leadToUpdate.company_email && upToDateLead.company_email !== "") {
-        await leadToUpdate.update({company_email: upToDateLead.company_email})
+    } if (upToDateLead.contact_person !== leadToUpdate.contact_person && upToDateLead.contact_person !== "") {
+        await leadToUpdate.update({contact_person: upToDateLead.contact_person})
     } if (upToDateLead.supplier !== leadToUpdate.supplier && upToDateLead.supplier !== "") {
         await leadToUpdate.update({supplier: upToDateLead.supplier})
     } if (upToDateLead.company_address !== leadToUpdate.company_address && upToDateLead.company_address !== "") {
