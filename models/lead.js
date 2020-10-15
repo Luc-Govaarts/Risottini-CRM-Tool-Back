@@ -26,8 +26,8 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
       },
       company_phone: DataTypes.STRING,
+      contact_person: DataTypes.STRING,
       company_address: DataTypes.STRING,
-      company_email: DataTypes.STRING,
       supplier: DataTypes.STRING,
       lat: {
         type: DataTypes.FLOAT,
