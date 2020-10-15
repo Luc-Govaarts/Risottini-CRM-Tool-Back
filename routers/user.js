@@ -5,8 +5,6 @@ const { Router } = require("express");
 
 const router = new Router();
 
-
-
 router.get("/", async (req,res,next) => {
     try {
         const user = await User.findAll({include: [Report, Action]})
